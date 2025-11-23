@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMW System - Mathematics in Modern World</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            font-family: 'Inter', sans-serif;
+            padding-top: 80px;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        .navbar {
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(100, 116, 139, 0.3);
+        }
+        .nav-link {
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #60a5fa !important;
+        }
+        .hero-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+        .module-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(100, 116, 139, 0.3);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+            border-color: #60a5fa;
+            box-shadow: 0 10px 25px rgba(96, 165, 250, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-calculator me-2"></i>MMW SYSTEM
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#modules">Modules</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Mathematics in the Modern World</h1>
+                    <p class="lead mb-4">Explore the beauty and application of mathematics in everyday life, nature, and modern technology.</p>
+                    <a href="#modules" class="btn btn-primary btn-lg px-4">Explore Modules</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <i class="fas fa-brain display-1 text-primary"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modules Section -->
+    <section id="modules" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5 fw-bold">Chapter Modules</h2>
+            <div class="row g-4">
+                <!-- Module 8.1 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="module-card p-4 text-center h-100">
+                        <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                        <h5>Module 8.1</h5>
+                        <p class="text-muted">Introduction to Statistics</p>
+                        <a href="8.1.html" class="btn btn-outline-primary btn-sm">View Module</a>
+                        <a href="8.1_quiz.html" class="btn btn-outline-success btn-sm mt-2">Take Quiz</a>
+                    </div>
+                </div>
+                
+                <!-- Module 8.2 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="module-card p-4 text-center h-100">
+                        <i class="fas fa-table fa-3x text-primary mb-3"></i>
+                        <h5>Module 8.2</h5>
+                        <p class="text-muted">Data Presentation</p>
+                        <a href="8.2.html" class="btn btn-outline-primary btn-sm">View Module</a>
+                        <a href="8.2_quiz.html" class="btn btn-outline-success btn-sm mt-2">Take Quiz</a>
+                    </div>
+                </div>
+                
+                <!-- Module 8.3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="module-card p-4 text-center h-100">
+                        <i class="fas fa-calculator fa-3x text-primary mb-3"></i>
+                        <h5>Module 8.3</h5>
+                        <p class="text-muted">Measures of Central Tendency</p>
+                        <a href="8.3.html" class="btn btn-outline-primary btn-sm">View Module</a>
+                        <a href="8.3_quiz.html" class="btn btn-outline-success btn-sm mt-2">Take Quiz</a>
+                    </div>
+                </div>
+                
+                <!-- Module 8.4 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="module-card p-4 text-center h-100">
+                        <i class="fas fa-chart-bar fa-3x text-primary mb-3"></i>
+                        <h5>Module 8.4</h5>
+                        <p class="text-muted">Measures of Variation</p>
+                        <a href="8.4.html" class="btn btn-outline-primary btn-sm">View Module</a>
+                        <a href="8.4_quiz.html" class="btn btn-outline-success btn-sm mt-2">Take Quiz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 MMW System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

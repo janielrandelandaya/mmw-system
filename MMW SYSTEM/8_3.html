@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>8.3 Stocks, Bonds & Mutual Funds - MMW System</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    body { 
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      font-family: 'Inter', sans-serif; 
+      padding-top: 80px;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    
+    .navbar { 
+      z-index: 1000; 
+      background: rgba(15, 23, 42, 0.95) !important;
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(100, 116, 139, 0.3);
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-link:hover {
+      color: #38bdf8 !important;
+      transform: translateY(-2px);
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    /* Techy Cards */
+    .tech-card {
+      background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(100, 116, 139, 0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+    
+    .tech-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .tech-card:hover::before {
+      left: 100%;
+    }
+    
+    .tech-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 80px rgba(56, 189, 248, 0.1);
+    }
+
+    /* Animated Background */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+    }
+    
+    .floating-element {
+      position: absolute;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(180deg); }
+    }
+
+    /* Glowing Text */
+    .glow-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #7dd3fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px rgba(56, 189, 248, 0.3);
+    }
+
+    /* Content Styles */
+    .slide-header {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.9), rgba(14, 165, 233, 0.9));
+      color: white;
+      padding: 2rem;
+      border-radius: 16px 16px 0 0;
+    }
+    
+    .investment-box {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));
+      border-left: 4px solid #38bdf8;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1rem 0;
+      border: 1px solid rgba(100, 116, 139, 0.2);
+    }
+    
+    .risk-high {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));
+      border-left: 4px solid #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    
+    .risk-medium {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));
+      border-left: 4px solid #f59e0b;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    
+    .risk-low {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));
+      border-left: 4px solid #22c55e;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+    
+    .example-box {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));
+      border: 2px solid rgba(100, 116, 139, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+    
+    .key-point {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.8));
+      border-left: 4px solid #38bdf8;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 12px;
+      border: 1px solid rgba(100, 116, 139, 0.2);
+    }
+    
+    .nav-btn {
+      background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    .nav-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
+      color: white;
+    }
+    
+    .back-btn {
+      background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .back-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
+      color: white;
+    }
+
+    /* Table Styles */
+    .investment-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .investment-table th {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.9), rgba(14, 165, 233, 0.9));
+      color: white;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    .investment-table td {
+      background: rgba(30, 41, 59, 0.6);
+      padding: 1rem;
+      border-bottom: 1px solid rgba(100, 116, 139, 0.3);
+    }
+    
+    .investment-table tr:hover td {
+      background: rgba(56, 189, 248, 0.1);
+    }
+
+    /* Stats Counter */
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #38bdf8, #7dd3fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .stat-number {
+        font-size: 2rem;
+      }
+      
+      .investment-table {
+        font-size: 0.875rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Animated Background -->
+  <div class="animated-bg">
+    <div class="floating-element" style="width: 300px; height: 300px; top: 10%; left: 10%; animation-delay: 0s;"></div>
+    <div class="floating-element" style="width: 200px; height: 200px; top: 60%; left: 80%; animation-delay: 2s;"></div>
+    <div class="floating-element" style="width: 400px; height: 400px; top: 30%; left: 60%; animation-delay: 4s;"></div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid px-5">
+      <a class="navbar-brand text-2xl font-bold glow-text" href="homepage.html">
+        <i class="fas fa-calculator me-2"></i>MMW System
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-lg">
+          <li class="nav-item px-3"><a class="nav-link text-sky-300 fw-medium" href="topics.html">TOPICS</a></li>
+          <li class="nav-item px-3"><a class="nav-link text-sky-300 fw-medium" href="about.html">ABOUT US</a></li>
+          <li class="nav-item px-3"><a class="nav-link text-sky-300 fw-medium" href="quiz.html">PRACTICE QUIZ</a></li>
+          <li class="nav-item px-3"><a class="nav-link text-sky-300 fw-medium" href="reporters.html">REPORTERS</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="text-center px-5 py-16 relative">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-5xl font-black mb-6 glow-text">
+        STOCKS, BONDS & <span class="text-cyan-300">MUTUAL FUNDS</span>
+      </h1>
+      <p class="text-xl text-slate-300 mb-8 leading-relaxed">
+        Mastering <span class="text-cyan-300 font-semibold">Investment Strategies and Risk Management</span><br>
+        Learn How to Grow Your Wealth Through Smart Investing
+      </p>
+      
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+        <div class="text-center">
+          <div class="stat-number">3</div>
+          <div class="text-slate-400 text-sm">Investment Types</div>
+        </div>
+        <div class="text-center">
+          <div class="stat-number">Topic</div>
+          <div class="text-slate-400 text-sm">8.3</div>
+        </div>
+        <div class="text-center">
+          <div class="stat-number">4</div>
+          <div class="text-slate-400 text-sm">Key Slides</div>
+        </div>
+        <div class="text-center">
+          <div class="stat-number">📈</div>
+          <div class="text-slate-400 text-sm">Investing</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT SECTION -->
+  <section class="px-5 py-8">
+    <div class="max-w-6xl mx-auto">
+      
+      <!-- Breadcrumb -->
+      <div class="flex items-center text-sm text-slate-400 mb-6">
+        <a href="topics.html" class="text-cyan-400 hover:text-cyan-300 transition-colors">Topics</a>
+        <span class="mx-2">›</span>
+        <a href="8_2.html" class="text-cyan-400 hover:text-cyan-300 transition-colors">8.2 Credit Cards & Loans</a>
+        <span class="mx-2">›</span>
+        <span class="text-slate-300">8.3 Stocks, Bonds & Mutual Funds</span>
+      </div>
+
+      <div class="mb-6 flex justify-between items-center">
+        <a href="8_2.html" class="back-btn">
+          <i class="fas fa-arrow-left mr-2"></i>Previous Topic
+        </a>
+        <a href="8.3_quiz.html" class="nav-btn" style="background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);">
+          <i class="fas fa-gamepad mr-2"></i>Take Quiz
+        </a>
+      </div>
+
+      <!-- Slide 12 - Stocks (Meaning) -->
+      <div class="tech-card">
+        <div class="slide-header">
+          <h2 class="text-3xl font-bold"><i class="fas fa-chart-line mr-3"></i>Stocks</h2>
+        </div>
+        <div class="slide-content p-0 pt-6">
+          <div class="investment-box">
+            <p class="text-xl text-slate-300 mb-4 text-center">
+              <strong class="text-cyan-300">Stock</strong> = ownership share in a company
+            </p>
+            <div class="text-center mb-4">
+              <span class="bg-cyan-900 text-cyan-300 px-3 py-1 rounded-full text-sm font-medium border border-cyan-700">You become a part-owner</span>
+            </div>
+          </div>
+
+          <div class="key-point">
+            <h3 class="text-xl font-semibold text-cyan-300 mb-4"><i class="fas fa-money-bill-wave mr-2"></i>Ways to Earn from Stocks:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-green-900/30 p-4 rounded-lg border-l-4 border-green-400 border border-green-400/30">
+                <h4 class="font-semibold text-green-400 mb-2"><i class="fas fa-coins mr-2"></i>Dividends</h4>
+                <p class="text-slate-300">Company shares its profits with shareholders</p>
+                <div class="mt-2 text-sm text-green-300">
+                  <i class="fas fa-wallet mr-1"></i>Regular income payments
+                </div>
+              </div>
+              <div class="bg-purple-900/30 p-4 rounded-lg border-l-4 border-purple-400 border border-purple-400/30">
+                <h4 class="font-semibold text-purple-400 mb-2"><i class="fas fa-trending-up mr-2"></i>Price Increase</h4>
+                <p class="text-slate-300">Sell your stocks at a higher price than you bought</p>
+                <div class="mt-2 text-sm text-purple-300">
+                  <i class="fas fa-chart-line mr-1"></i>Capital gains
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div class="risk-high p-4 rounded-lg">
+              <h4 class="font-semibold text-red-400 mb-2"><i class="fas fa-exclamation-triangle mr-2"></i>Risk Level: High</h4>
+              <p class="text-slate-300 text-sm">Stock prices can go up and down dramatically</p>
+            </div>
+            <div class="bg-green-900/30 p-4 rounded-lg border-l-4 border-green-400 border border-green-400/30">
+              <h4 class="font-semibold text-green-400 mb-2"><i class="fas fa-trophy mr-2"></i>Reward Potential: High</h4>
+              <p class="text-slate-300 text-sm">Possibility of significant returns</p>
+            </div>
+          </div>
+
+          <div class="example-box mt-4">
+            <h4 class="font-semibold text-cyan-300 mb-2"><i class="fas fa-chart-bar mr-2"></i>Example:</h4>
+            <p class="text-slate-300">Buy 100 shares at ₱50 each = ₱5,000 investment</p>
+            <p class="text-slate-300">If price rises to ₱75: 100 × ₱75 = ₱7,500 (<span class="text-green-400">₱2,500 profit</span>)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 13 - Bonds (Meaning) -->
+      <div class="tech-card">
+        <div class="slide-header">
+          <h2 class="text-3xl font-bold"><i class="fas fa-handshake mr-3"></i>Bonds</h2>
+        </div>
+        <div class="slide-content p-0 pt-6">
+          <div class="investment-box">
+            <p class="text-xl text-slate-300 mb-4 text-center">
+              <strong class="text-cyan-300">Bond</strong> = you lend money to government or companies
+            </p>
+            <div class="text-center mb-4">
+              <span class="bg-green-900 text-green-300 px-3 py-1 rounded-full text-sm font-medium border border-green-700">You become a lender</span>
+            </div>
+          </div>
+
+          <div class="key-point">
+            <h3 class="text-xl font-semibold text-cyan-300 mb-4"><i class="fas fa-file-contract mr-2"></i>They Promise to Pay:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="bg-blue-900/30 p-4 rounded-lg border-l-4 border-blue-400 border border-blue-400/30">
+                <h4 class="font-semibold text-blue-400 mb-2"><i class="fas fa-landmark mr-2"></i>Principal Amount</h4>
+                <p class="text-slate-300">The original money you lent them</p>
+                <div class="mt-2 text-sm text-blue-300">
+                  <i class="fas fa-undo mr-1"></i>Returned at maturity date
+                </div>
+              </div>
+              <div class="bg-orange-900/30 p-4 rounded-lg border-l-4 border-orange-400 border border-orange-400/30">
+                <h4 class="font-semibold text-orange-400 mb-2"><i class="fas fa-percent mr-2"></i>Fixed Interest</h4>
+                <p class="text-slate-300">Regular interest payments (coupon rate)</p>
+                <div class="mt-2 text-sm text-orange-300">
+                  <i class="fas fa-calendar-alt mr-1"></i>Predictable income
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div class="risk-low p-4 rounded-lg">
+              <h4 class="font-semibold text-green-400 mb-2"><i class="fas fa-shield-alt mr-2"></i>Risk Level: Low</h4>
+              <p class="text-slate-300 text-sm">More stable and predictable returns</p>
+            </div>
+            <div class="bg-yellow-900/30 p-4 rounded-lg border-l-4 border-yellow-400 border border-yellow-400/30">
+              <h4 class="font-semibold text-yellow-400 mb-2"><i class="fas fa-chart-line mr-2"></i>Reward Potential: Low to Moderate</h4>
+              <p class="text-slate-300 text-sm">Lower returns but more security</p>
+            </div>
+          </div>
+
+          <div class="example-box mt-4">
+            <h4 class="font-semibold text-cyan-300 mb-2"><i class="fas fa-chart-bar mr-2"></i>Example:</h4>
+            <p class="text-slate-300">Buy ₱10,000 bond with 5% annual interest for 5 years</p>
+            <p class="text-slate-300">You receive ₱500 interest each year + ₱10,000 back after 5 years</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 14 - Mutual Funds (Meaning) -->
+      <div class="tech-card">
+        <div class="slide-header">
+          <h2 class="text-3xl font-bold"><i class="fas fa-piggy-bank mr-3"></i>Mutual Funds</h2>
+        </div>
+        <div class="slide-content p-0 pt-6">
+          <div class="investment-box">
+            <p class="text-xl text-slate-300 mb-4 text-center">
+              A <strong class="text-cyan-300">mutual fund</strong> is a pool of money collected from many investors
+            </p>
+            <div class="text-center mb-4">
+              <span class="bg-purple-900 text-purple-300 px-3 py-1 rounded-full text-sm font-medium border border-purple-700">Professional management</span>
+            </div>
+          </div>
+
+          <div class="key-point">
+            <h3 class="text-xl font-semibold text-cyan-300 mb-4"><i class="fas fa-chart-pie mr-2"></i>Money is Invested In:</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 text-center hover:border-red-500 transition-colors">
+                <div class="text-red-400 mb-2">
+                  <i class="fas fa-chart-line text-2xl"></i>
+                </div>
+                <p class="text-slate-300 text-sm font-medium">Stocks</p>
+              </div>
+              <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 text-center hover:border-green-500 transition-colors">
+                <div class="text-green-400 mb-2">
+                  <i class="fas fa-handshake text-2xl"></i>
+                </div>
+                <p class="text-slate-300 text-sm font-medium">Bonds</p>
+              </div>
+              <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 text-center hover:border-blue-500 transition-colors">
+                <div class="text-blue-400 mb-2">
+                  <i class="fas fa-gem text-2xl"></i>
+                </div>
+                <p class="text-slate-300 text-sm font-medium">Other Assets</p>
+              </div>
+              <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 text-center hover:border-purple-500 transition-colors">
+                <div class="text-purple-400 mb-2">
+                  <i class="fas fa-user-tie text-2xl"></i>
+                </div>
+                <p class="text-slate-300 text-sm font-medium">Professional Management</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="key-point">
+            <h3 class="text-xl font-semibold text-cyan-300 mb-4"><i class="fas fa-layer-group mr-2"></i>Types of Mutual Funds:</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 mb-2 hover:border-red-500 transition-colors">
+                  <h4 class="font-semibold text-red-400">Equity Fund</h4>
+                  <p class="text-slate-400 text-sm">Invests mainly in stocks</p>
+                </div>
+                <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 mb-2 hover:border-green-500 transition-colors">
+                  <h4 class="font-semibold text-green-400">Bond Fund</h4>
+                  <p class="text-slate-400 text-sm">Invests mainly in bonds</p>
+                </div>
+              </div>
+              <div>
+                <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 mb-2 hover:border-blue-500 transition-colors">
+                  <h4 class="font-semibold text-blue-400">Balanced Fund</h4>
+                  <p class="text-slate-400 text-sm">Mix of stocks and bonds</p>
+                </div>
+                <div class="bg-slate-800 p-3 rounded-lg border border-slate-700 mb-2 hover:border-purple-500 transition-colors">
+                  <h4 class="font-semibold text-purple-400">Index Fund</h4>
+                  <p class="text-slate-400 text-sm">Tracks a market index</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div class="risk-medium p-4 rounded-lg">
+              <h4 class="font-semibold text-orange-400 mb-2"><i class="fas fa-balance-scale mr-2"></i>Risk Level: Medium</h4>
+              <p class="text-slate-300 text-sm">Diversification reduces risk</p>
+            </div>
+            <div class="bg-blue-900/30 p-4 rounded-lg border-l-4 border-blue-400 border border-blue-400/30">
+              <h4 class="font-semibold text-blue-400 mb-2"><i class="fas fa-chart-line mr-2"></i>Reward Potential: Medium</h4>
+              <p class="text-slate-300 text-sm">Balanced growth potential</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 15 - Risk vs Reward -->
+      <div class="tech-card">
+        <div class="slide-header">
+          <h2 class="text-3xl font-bold"><i class="fas fa-chess-knight mr-3"></i>Risk vs Reward</h2>
+        </div>
+        <div class="slide-content p-0 pt-6">
+          <div class="investment-box text-center">
+            <p class="text-xl text-slate-300 mb-4">
+              Understanding the relationship between risk and potential returns
+            </p>
+          </div>
+
+          <div class="overflow-x-auto rounded-lg border border-slate-700">
+            <table class="investment-table">
+              <thead>
+                <tr>
+                  <th class="text-left">Investment</th>
+                  <th class="text-center">Risk</th>
+                  <th class="text-center">Reward</th>
+                  <th class="text-center">Best For</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="font-semibold text-red-400">Stocks</td>
+                  <td class="text-center">
+                    <span class="bg-red-900/50 text-red-300 px-2 py-1 rounded-full text-sm font-medium border border-red-700">High</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="bg-green-900/50 text-green-300 px-2 py-1 rounded-full text-sm font-medium border border-green-700">High</span>
+                  </td>
+                  <td class="text-center text-slate-400 text-sm">Long-term growth</td>
+                </tr>
+                <tr>
+                  <td class="font-semibold text-green-400">Bonds</td>
+                  <td class="text-center">
+                    <span class="bg-green-900/50 text-green-300 px-2 py-1 rounded-full text-sm font-medium border border-green-700">Low</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded-full text-sm font-medium border border-yellow-700">Low to Moderate</span>
+                  </td>
+                  <td class="text-center text-slate-400 text-sm">Stable income</td>
+                </tr>
+                <tr>
+                  <td class="font-semibold text-blue-400">Mutual Funds</td>
+                  <td class="text-center">
+                    <span class="bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded-full text-sm font-medium border border-yellow-700">Medium</span>
+                  </td>
+                  <td class="text-center">
+                    <span class="bg-blue-900/50 text-blue-300 px-2 py-1 rounded-full text-sm font-medium border border-blue-700">Medium</span>
+                  </td>
+                  <td class="text-center text-slate-400 text-sm">Diversification</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="key-point mt-6 bg-gradient-to-r from-red-900/30 to-green-900/30 border-l-4 border-purple-400 border border-purple-400/30">
+            <h3 class="text-xl font-semibold text-purple-400 mb-2"><i class="fas fa-bullseye mr-2"></i>Key Principle:</h3>
+            <p class="text-lg text-slate-300">
+              <strong class="text-purple-400">Higher risk → Higher potential gain</strong>
+            </p>
+            <p class="text-slate-400 mt-2">
+              Lower risk → Lower potential gain, but more security
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+            <div class="bg-red-900/30 p-4 rounded-lg border border-red-700/30">
+              <h4 class="font-semibold text-red-400 mb-2"><i class="fas fa-fire mr-2"></i>High Risk Investments</h4>
+              <p class="text-slate-300 text-sm">Potential for big gains, but also big losses</p>
+            </div>
+            <div class="bg-green-900/30 p-4 rounded-lg border border-green-700/30">
+              <h4 class="font-semibold text-green-400 mb-2"><i class="fas fa-shield-alt mr-2"></i>Low Risk Investments</h4>
+              <p class="text-slate-300 text-sm">More stable, but lower returns</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="flex flex-col sm:flex-row justify-between items-center mt-12 gap-4">
+        <a href="8_2.html" class="nav-btn w-full sm:w-auto text-center justify-center">
+          <i class="fas fa-arrow-left mr-2"></i>
+          Previous: 8.2 Credit Cards
+        </a>
+        <a href="8_4.html" class="nav-btn w-full sm:w-auto text-center justify-center">
+          Next: 8.4 Home Ownership
+          <i class="fas fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // Add some interactive effects
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      // Observe all tech cards
+      document.querySelectorAll('.tech-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'all 0.6s ease';
+        observer.observe(card);
+      });
+    });
+  </script>
+
+</body>
+</html>

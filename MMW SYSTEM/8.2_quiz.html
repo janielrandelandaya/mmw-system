@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>8.2 Credit Cards & Loans Quiz - MMW System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body { 
+      padding-top: 80px;
+      background: #f6f7fb !important;
+      font-family: 'Inter', sans-serif;
+    }
+    .navbar { 
+      z-index: 1000; 
+    }
+    .nav-link {
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .nav-link:hover {
+      color: #0284c7 !important;
+    }
+    .quiz-container {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .question-box {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .answer-input {
+      border: 2px solid #d1d5db;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      width: 100%;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+    .answer-input:focus {
+      outline: none;
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    }
+    .submit-btn {
+      background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+    .result-box {
+      background: #faf5ff;
+      border-left: 4px solid #8b5cf6;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      margin-top: 2rem;
+    }
+    .instruction-box {
+      background: #faf5ff;
+      border-left: 4px solid #8b5cf6;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+  <div class="container-fluid px-5">
+    <a class="navbar-brand text-2xl font-bold text-sky-600" href="homepage.html">MMW System</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-lg">
+        <li class="nav-item px-3"><a class="nav-link text-sky-600 fw-medium" href="topics.html">TOPICS</a></li>
+        <li class="nav-item px-3"><a class="nav-link text-sky-600 fw-medium" href="presentation.html">PRESENTATION</a></li>
+        <li class="nav-item px-3"><a class="nav-link text-sky-600 fw-medium" href="quiz.html">PRACTICE QUIZ</a></li>
+        <li class="nav-item px-3"><a class="nav-link text-sky-600 fw-medium" href="reporters.html">REPORTERS</a></li>
+        <li class="nav-item px-3"><a class="nav-link text-sky-600 fw-medium" href="about.html">ABOUT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="px-5 py-12">
+  <div class="max-w-4xl mx-auto">
+    
+    <!-- Breadcrumb -->
+    <div class="flex items-center text-sm text-gray-500 mb-6">
+      <a href="quiz.html" class="text-sky-600 hover:text-sky-700">Practice Quiz</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-600">8.2 Credit Cards & Loans</span>
+    </div>
+    
+      <div class="mb-6 text-end">
+        <a href="quiz.html" onclick="event.preventDefault(); if (history.length > 1) history.back(); else window.location.href='quiz.html';" class="btn btn-outline-secondary">← Go Back</a>
+      </div>
+
+    <!-- Page Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-800 mb-4">Topic 8.2: Credit Cards & Consumer Loans Quiz</h1>
+      <p class="text-gray-600 text-lg">
+        5 identification questions focusing on credit and loan concepts
+      </p>
+    </div>
+
+    <!-- Instructions -->
+    <div class="instruction-box">
+      <h3 class="font-semibold text-purple-800 mb-2">📝 Instructions:</h3>
+      <p class="text-purple-700 text-sm">
+        • Answer all 5 identification questions<br>
+        • For multiple answers, separate with commas or "and"<br>
+        • Focus on credit cards, loans, and amortization
+      </p>
+    </div>
+
+    <!-- Quiz Form -->
+    <form id="quizForm" class="quiz-container">
+      
+      <!-- Question 1 -->
+      <div class="question-box">
+        <h3 class="text-lg font-semibold text-gray-800 mb-3">1. What does APR stand for in credit cards?</h3>
+        <input type="text" class="answer-input" placeholder="Your answer...">
+      </div>
+
+      <!-- Question 2 -->
+      <div class="question-box">
+        <h3 class="text-lg font-semibold text-gray-800 mb-3">2. What is the maximum amount you can borrow on a credit card called?</h3>
+        <input type="text" class="answer-input" placeholder="Your answer...">
+      </div>
+
+      <!-- Question 3 -->
+      <div class="question-box">
+        <h3 class="text-lg font-semibold text-gray-800 mb-3">3. Name 2 types of consumer loans:</h3>
+        <input type="text" class="answer-input" placeholder="e.g., personal loans, auto loans">
+      </div>
+
+      <!-- Question 4 -->
+      <div class="question-box">
+        <h3 class="text-lg font-semibold text-gray-800 mb-3">4. What is the process of paying off a loan through fixed monthly payments called?</h3>
+        <input type="text" class="answer-input" placeholder="Your answer...">
+      </div>
+
+      <!-- Question 5 -->
+      <div class="question-box">
+        <h3 class="text-lg font-semibold text-gray-800 mb-3">5. Give 2 dangers of paying only the minimum payment on credit cards:</h3>
+        <input type="text" class="answer-input" placeholder="e.g., long-term debt, high interest">
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center mt-8">
+        <button type="button" onclick="checkAnswers()" class="submit-btn">
+          📊 Submit Answers
+        </button>
+      </div>
+
+    </form>
+
+    <!-- Results Section -->
+    <div id="results" class="result-box hidden">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Quiz Results</h3>
+      <div id="score" class="text-2xl font-bold text-purple-600 mb-4"></div>
+      <div id="feedback" class="text-gray-700"></div>
+      <div class="flex gap-4 mt-6">
+        <button onclick="resetQuiz()" class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition duration-300">
+          Try Again
+        </button>
+        <a href="quiz.html" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition duration-300 inline-block">
+          Back to Quiz Menu
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Correct answers for Topic 8.2
+  const correctAnswers = [
+    ["annual percentage rate"],
+    ["credit limit"],
+    ["personal loans", "auto loans", "appliance loans"],
+    ["amortization"],
+    ["long-term debt", "high interest", "slow repayment"]
+  ];
+
+  function checkAnswers() {
+    const inputs = document.querySelectorAll('.answer-input');
+    let score = 0;
+    let feedbackHTML = '<div class="space-y-4">';
+
+    inputs.forEach((input, index) => {
+      const userAnswer = input.value.trim().toLowerCase();
+      const correctOptions = correctAnswers[index];
+      
+      let correctCount = 0;
+      let userAnswers = userAnswer.split(/[,&]| and /).map(ans => ans.trim()).filter(ans => ans !== '');
+      
+      userAnswers.forEach(userAns => {
+        if (correctOptions.some(correct => userAns.includes(correct) || correct.includes(userAns))) {
+          correctCount++;
+        }
+      });
+
+      const isCorrect = correctCount >= Math.ceil(correctOptions.length / 2);
+      
+      if (isCorrect) {
+        score++;
+        input.style.borderColor = '#10b981';
+        input.style.backgroundColor = '#f0fdf4';
+        feedbackHTML += `
+          <div class="flex items-start text-green-600">
+            <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <div>
+              <span class="font-semibold">Question ${index + 1}:</span> Correct! 
+            </div>
+          </div>
+        `;
+      } else {
+        input.style.borderColor = '#ef4444';
+        input.style.backgroundColor = '#fef2f2';
+        feedbackHTML += `
+          <div class="flex items-start text-red-600">
+            <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+            <div>
+              <span class="font-semibold">Question ${index + 1}:</span> Needs improvement. 
+              <span class="text-red-500 text-sm">Expected: ${correctOptions.join(' or ')}</span>
+            </div>
+          </div>
+        `;
+      }
+    });
+
+    feedbackHTML += '</div>';
+    
+    const percentage = (score / inputs.length) * 100;
+    let grade = '';
+    if (percentage >= 90) grade = '🎉 Excellent!';
+    else if (percentage >= 80) grade = '👍 Very Good!';
+    else if (percentage >= 60) grade = '😊 Good!';
+    else grade = '💪 Keep Practicing';
+
+    document.getElementById('score').innerHTML = `
+      ${grade}<br>
+      Score: ${score}/5 (${percentage}%)
+    `;
+    document.getElementById('feedback').innerHTML = feedbackHTML;
+    document.getElementById('results').classList.remove('hidden');
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function resetQuiz() {
+    const inputs = document.querySelectorAll('.answer-input');
+    inputs.forEach(input => {
+      input.value = '';
+      input.style.borderColor = '#d1d5db';
+      input.style.backgroundColor = '';
+    });
+    document.getElementById('results').classList.add('hidden');
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>20-Item Comprehensive Quiz - MMW System</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    body { 
+      padding-top: 80px;
+      background: #f6f7fb !important;
+      font-family: 'Inter', sans-serif;
+    }
+    .navbar { 
+      z-index: 1000; 
+    }
+    .nav-link {
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .nav-link:hover {
+      color: #0284c7 !important;
+    }
+    .quiz-container {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .question-box {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .answer-input {
+      border: 2px solid #d1d5db;
+      border-radius: 0.5rem;
+      padding: 0.75rem;
+      width: 100%;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+    .answer-input:focus {
+      outline: none;
+      border-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+    }
+    .submit-btn {
+      background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+    .result-box {
+      background: #f0f9ff;
+      border-left: 4px solid #0284c7;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      margin-top: 2rem;
+    }
+    .instruction-box {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+  <div class="container-fluid px-5">
+    <a class="navbar-brand text-2xl font-bold text-sky-600" href="homepage.html">MMW System</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-lg">
+        <li class="nav-item px-3"><a class="nav-link text-sky-600 fw-medium" href="topics.html">TOPICS</a></li>
+        <li class="nav-item px-3"><a class="nav-link text-sky-600 fw-medium" href="about.html">ABOUT US</a></li>
+        <li class="nav-item px-3"><a class="nav-link text-sky-600 fw-medium" href="quiz.html">PRACTICE QUIZ</a></li>
+        <li class="nav-item px-3"><a class="nav-link text-sky-600 fw-medium" href="reporters.html">REPORTERS</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section class="px-5 py-12">
+  <div class="max-w-4xl mx-auto">
+    
+    <!-- Breadcrumb -->
+    <div class="flex items-center text-sm text-gray-500 mb-6">
+      <a href="quiz.html" class="text-sky-600 hover:text-sky-700">Practice Quiz</a>
+      <span class="mx-2">›</span>
+      <span class="text-gray-600">20-Item Comprehensive Quiz</span>
+    </div>
+
+    <div class="mb-6 text-end">
+      <a href="quiz.html" onclick="event.preventDefault(); if (history.length > 1) history.back(); else window.location.href='quiz.html';" class="btn btn-outline-secondary">← Go Back</a>
+    </div>
+
+    <!-- Page Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold text-gray-800 mb-4">20-Item Comprehensive Quiz</h1>
+      <p class="text-gray-600 text-lg">
+        Test your knowledge on all Mathematics of Finance topics
+      </p>
+    </div>
+
+    <!-- Instructions -->
+    <div class="instruction-box">
+      <h3 class="font-semibold text-yellow-800 mb-2">📝 Instructions:</h3>
+      <p class="text-yellow-700 text-sm">
+        • Answer all 20 identification questions<br>
+        • For multiple answers, separate with commas or "and" (e.g., "3 and 7" or "3, 7")<br>
+        • Some questions may require multiple answers as specified
+      </p>
+    </div>
+
+    <!-- Quiz Form -->
+    <form id="quizForm" class="quiz-container">
+      
+      <!-- Topic 8.1: Simple & Compound Interest -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-sky-600 mb-4 border-b-2 border-sky-200 pb-2">Topic 8.1: Simple & Compound Interest</h2>
+        
+        <!-- Question 1 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">1. Give at least 2 types of interest:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., simple and compound">
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">2. What are the 3 variables in the simple interest formula I = P × r × t?</h3>
+          <input type="text" class="answer-input" placeholder="e.g., principal, rate, time">
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">3. Give 2 characteristics of compound interest:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., interest on interest, exponential growth">
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">4. Name 2 financial products that typically use simple interest:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., short-term loans, car loans">
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">5. What are 2 ways to earn from investments with interest?</h3>
+          <input type="text" class="answer-input" placeholder="e.g., dividends, price appreciation">
+        </div>
+      </div>
+
+      <!-- Topic 8.2: Credit Cards & Consumer Loans -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-green-600 mb-4 border-b-2 border-green-200 pb-2">Topic 8.2: Credit Cards & Consumer Loans</h2>
+        
+        <!-- Question 6 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">6. Give 2 key terms related to credit cards:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., APR, credit limit">
+        </div>
+
+        <!-- Question 7 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">7. Name 2 types of consumer loans:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., personal loans, auto loans">
+        </div>
+
+        <!-- Question 8 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">8. What are the 2 main components of a loan amortization payment?</h3>
+          <input type="text" class="answer-input" placeholder="e.g., principal portion, interest portion">
+        </div>
+
+        <!-- Question 9 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">9. Give 2 dangers of paying only the minimum on credit cards:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., long-term debt, high interest">
+        </div>
+
+        <!-- Question 10 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">10. Name 2 common loan periods for mortgages:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., 15 years, 30 years">
+        </div>
+      </div>
+
+      <!-- Topic 8.3: Stocks, Bonds & Mutual Funds -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-purple-600 mb-4 border-b-2 border-purple-200 pb-2">Topic 8.3: Stocks, Bonds & Mutual Funds</h2>
+        
+        <!-- Question 11 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">11. Give 2 ways to earn from stocks:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., dividends, capital gains">
+        </div>
+
+        <!-- Question 12 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">12. Name 2 types of investments besides stocks:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., bonds, mutual funds">
+        </div>
+
+        <!-- Question 13 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">13. What are 2 types of mutual funds?</h3>
+          <input type="text" class="answer-input" placeholder="e.g., equity fund, bond fund">
+        </div>
+
+        <!-- Question 14 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">14. Give 2 risk levels for investments (from low to high):</h3>
+          <input type="text" class="answer-input" placeholder="e.g., low risk, high risk">
+        </div>
+
+        <!-- Question 15 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">15. Name 2 entities that issue bonds:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., government, corporations">
+        </div>
+      </div>
+
+      <!-- Topic 8.4: Home Ownership -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-red-600 mb-4 border-b-2 border-red-200 pb-2">Topic 8.4: Home Ownership</h2>
+        
+        <!-- Question 16 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">16. Give 2 main components of home buying financing:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., down payment, mortgage">
+        </div>
+
+        <!-- Question 17 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">17. Name 2 benefits of home ownership:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., builds equity, asset appreciation">
+        </div>
+
+        <!-- Question 18 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">18. What are 2 advantages of renting over buying?</h3>
+          <input type="text" class="answer-input" placeholder="e.g., flexibility, lower upfront cost">
+        </div>
+
+        <!-- Question 19 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">19. Give 2 types of mortgage interest rates:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., fixed rate, variable rate">
+        </div>
+
+        <!-- Question 20 -->
+        <div class="question-box">
+          <h3 class="text-lg font-semibold text-gray-800 mb-3">20. Name 2 long-term costs of home ownership besides the mortgage:</h3>
+          <input type="text" class="answer-input" placeholder="e.g., property tax, maintenance">
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="text-center mt-8">
+        <button type="button" onclick="checkAnswers()" class="submit-btn">
+          📊 Submit All Answers
+        </button>
+      </div>
+
+    </form>
+
+    <!-- Results Section -->
+    <div id="results" class="result-box hidden">
+      <h3 class="text-xl font-semibold text-gray-800 mb-4">Quiz Results</h3>
+      <div id="score" class="text-2xl font-bold text-sky-600 mb-4"></div>
+      <div id="feedback" class="text-gray-700"></div>
+      <div class="flex gap-4 mt-6">
+        <button onclick="resetQuiz()" class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition duration-300">
+          Try Again
+        </button>
+        <a href="quiz.html" class="bg-sky-600 text-white px-6 py-2 rounded-lg hover:bg-sky-700 transition duration-300 inline-block">
+          Back to Quiz Menu
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Correct answers (accepting multiple variations)
+  const correctAnswers = [
+    ["simple", "compound"],
+    ["principal", "rate", "time"],
+    ["interest on interest", "exponential growth", "compounding"],
+    ["short-term loans", "car loans", "personal loans"],
+    ["dividends", "interest", "price appreciation"],
+    ["APR", "credit limit", "minimum payment"],
+    ["personal loans", "auto loans", "appliance loans"],
+    ["principal", "interest"],
+    ["long-term debt", "high interest", "slow repayment"],
+    ["15 years", "20 years", "30 years"],
+    ["dividends", "capital gains", "price appreciation"],
+    ["bonds", "mutual funds", "real estate"],
+    ["equity fund", "bond fund", "balanced fund"],
+    ["low risk", "medium risk", "high risk"],
+    ["government", "corporations", "municipalities"],
+    ["down payment", "mortgage", "loan"],
+    ["builds equity", "asset appreciation", "stability"],
+    ["flexibility", "lower upfront cost", "no maintenance"],
+    ["fixed rate", "variable rate", "adjustable rate"],
+    ["property tax", "maintenance", "insurance"]
+  ];
+
+  function checkAnswers() {
+    const inputs = document.querySelectorAll('.answer-input');
+    let score = 0;
+    let feedbackHTML = '<div class="space-y-4">';
+
+    inputs.forEach((input, index) => {
+      const userAnswer = input.value.trim().toLowerCase();
+      const correctOptions = correctAnswers[index];
+      
+      // Check how many correct answers the user provided
+      let correctCount = 0;
+      let userAnswers = userAnswer.split(/[,&]| and /).map(ans => ans.trim()).filter(ans => ans !== '');
+      
+      userAnswers.forEach(userAns => {
+        if (correctOptions.some(correct => userAns.includes(correct) || correct.includes(userAns))) {
+          correctCount++;
+        }
+      });
+
+      // Consider answer correct if they got at least half of the expected answers
+      const isCorrect = correctCount >= Math.ceil(correctOptions.length / 2);
+      
+      if (isCorrect) {
+        score++;
+        input.style.borderColor = '#10b981';
+        input.style.backgroundColor = '#f0fdf4';
+        feedbackHTML += `
+          <div class="flex items-start text-green-600">
+            <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+            <div>
+              <span class="font-semibold">Question ${index + 1}:</span> Correct! 
+              <span class="text-green-500 text-sm">Expected: ${correctOptions.join(', ')}</span>
+            </div>
+          </div>
+        `;
+      } else {
+        input.style.borderColor = '#ef4444';
+        input.style.backgroundColor = '#fef2f2';
+        feedbackHTML += `
+          <div class="flex items-start text-red-600">
+            <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+            <div>
+              <span class="font-semibold">Question ${index + 1}:</span> Needs improvement. 
+              <span class="text-red-500 text-sm">Expected answers like: ${correctOptions.join(', ')}</span>
+            </div>
+          </div>
+        `;
+      }
+    });
+
+    feedbackHTML += '</div>';
+    
+    // Display results
+    const percentage = (score / inputs.length) * 100;
+    let grade = '';
+    if (percentage >= 90) grade = '🎉 Excellent!';
+    else if (percentage >= 80) grade = '👍 Very Good!';
+    else if (percentage >= 70) grade = '😊 Good!';
+    else if (percentage >= 60) grade = '📚 Keep Studying';
+    else grade = '💪 Needs More Practice';
+
+    document.getElementById('score').innerHTML = `
+      ${grade}<br>
+      Score: ${score}/20 (${percentage}%)
+    `;
+    document.getElementById('feedback').innerHTML = feedbackHTML;
+    document.getElementById('results').classList.remove('hidden');
+    
+    // Scroll to results
+    document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function resetQuiz() {
+    const inputs = document.querySelectorAll('.answer-input');
+    inputs.forEach(input => {
+      input.value = '';
+      input.style.borderColor = '#d1d5db';
+      input.style.backgroundColor = '';
+    });
+    document.getElementById('results').classList.add('hidden');
+  }
+</script>
+
+</body>
+</html>
